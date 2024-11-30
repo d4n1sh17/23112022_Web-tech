@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Background GIF Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('back.gif') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.6;
+        }
+
+        /* Optional: Adjust for better text contrast */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="card-switch">
+            <label class="switch">
+                <input type="checkbox" class="toggle">
+                <span class="slider"></span>
+                <span class="card-side"></span>
+                <div class="flip-card__inner">
+                    <div class="flip-card__front">
+                        <div class="title">Log in</div>
+                        <form class="flip-card__form" onsubmit="redirectToHome(event)">
+                            <input class="flip-card__input" name="email" placeholder="Email" type="email" required>
+                            <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                            <button type="submit" class="flip-card__btn">Let’s go!</button>
+                        </form>
+                    </div>
+                    <div class="flip-card__back">
+                        <div class="title">Sign up</div>
+                        <form class="flip-card__form" onsubmit="redirectToHome(event)">
+                            <input class="flip-card__input" placeholder="Name" type="text" required>
+                            <input class="flip-card__input" name="email" placeholder="Email" type="email" required>
+                            <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                            <button type="submit" class="flip-card__btn">Confirm!</button>
+                        </form>
+                    </div>
+                </div>
+            </label>
+        </div>   
+    </div>
+
+    <script>
+        function redirectToHome(event) {
+            event.preventDefault(); // Prevent form submission
+            // Simulate authentication check (for real use, integrate backend validation here)
+            window.location.href = "home.html"; // Redirect to home page
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAGGISTHAN - Handcrafted Goods in Hoods</title>
+    <style>
+        :root {
+            --font-color: #ffffff;
+            --bg-color: #0a0a0a;
+            --accent-color: #ffffff;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--font-color);
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--bg-color);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--font-color);
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #b3b3b3;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 50px;
+        }
+
+        .product-card {
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            margin-top: 15px;
+            font-size: 18px;
+        }
+
+        .product-card .price {
+            color: #ff9900;
+            font-weight: bold;
+        }
+
+        /* Button Styles */
+        .btn {
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 7px;
+            border: 1px solid rgb(61, 106, 255);
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: transparent;
+            color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease-in;
+        }
+
+        .btn:hover {
+            background: rgb(61, 106, 255);
+            box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
+            transition: all 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="logo.jpg" alt="DrAggis Logo">
+        </div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <main class="product-grid">
+        <div class="product-card" data-id="1" data-name="Hood Classic Hoodie" data-price="999.99">
+            <img src="hood_1(a).jpg" alt="Hood Classic Hoodie">
+            <h3>Hood Classic Hoodie</h3>
+            <p class="price">Rs: 999.99</p>
+            <button class="btn add-to-cart">Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="hood_2.jpg" alt="Stone Flamez">
+            <h3>Stone Flamez</h3>
+            <p class="price">Rs: 999.99</p>
+            <a href="#" class="btn cart-btn">Add to Cart</a>
+        </div>
+        <div class="product-card">
+            <img src="hood_3.jpg" alt="Red Flamez 3^">
+            <h3>Red Flamez 3^</h3>
+            <p class="price">Rs: 999.99</p>
+            <a href="#" class="btn cart-btn">Add to Cart</a>
+        </div>
+        <div class="product-card">
+            <img src="hood_4(a).jpg" alt="Souls of the s4ints">
+            <h3>Souls of the s4ints</h3>
+            <p class="price">Rs: 999.99</p>
+            <a href="#" class="btn cart-btn">Add to Cart</a>
+        </div>
+        <div class="product-card">
+            <img src="hood_5(a).jpg" alt="Tiger Z">
+            <h3>Tiger Z</h3>
+            <p class="price">Rs: 999.99</p>
+            <a href="#" class="btn cart-btn">Add to Cart</a>
+        </div>
+        <div class="product-card">
+            <img src="hood_6.jpg" alt="Yeezy">
+            <h3>Yeezy</h3>
+            <p class="price">Rs: 999.99</p>
+            <a href="#" class="btn cart-btn">Add to Cart</a>
+        </div>
+    </main>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.product-card');
+                const item = {
+                    id: card.dataset.id,
+                    name: card.dataset.name,
+                    price: parseFloat(card.dataset.price),
+                    image: card.querySelector('img').src
+                };
+
+                cart.push(item);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+            });
+        });
+
+        updateCartCount();
+    </script>
+</body>
+</html>
